@@ -1,10 +1,9 @@
 import request from '@/utils/request';
-export async function fakeAccountLogin(params) {
-  return request('/api/login/account', {
+import { loginUrl } from '../utils/urls'
+export async function AccountLogin(params) {
+  //console.log(params)
+  return request(loginUrl(), {
     method: 'POST',
-    data: params,
+    body: params,
   });
-}
-export async function getFakeCaptcha(mobile) {
-  return request(`/api/login/captcha?mobile=${mobile}`);
 }

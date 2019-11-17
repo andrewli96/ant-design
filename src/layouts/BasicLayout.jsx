@@ -42,19 +42,19 @@ const defaultFooterDom = (
       {
         key: 'DZY',
         title: 'DZY',
-        href: 'https://pro.ant.design',
+        href: '/',
         blankTarget: true,
       },
       {
         key: 'github',
-        title: <Icon type="github" />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        title: <Icon type="smile" />,
+        href: '/',
         blankTarget: true,
       },
       {
         key: 'DZY',
         title: 'DZY',
-        href: 'https://ant.design',
+        href: '/',
         blankTarget: true,
       },
     ]}

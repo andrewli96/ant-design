@@ -85,17 +85,19 @@ export default {
           name: 'login',
           path: '/user/login',
           component: './user/login',
+
         },
       ],
     },
     {
       path: '/',
       component: '../layouts/SecurityLayout',
+      Routes: ['src/pages/Authorized'],
+      authority: ['admin'],
       routes: [
         {
           path: '/',
           component: '../layouts/BasicLayout',
-          authority: ['admin', 'user'],
           routes: [
             {
               path: '/',
@@ -108,11 +110,10 @@ export default {
               component: './Welcome',
             },
             {
-              path: '/admin',
-              name: 'admin',
-              icon: 'crown',
-              component: './Admin',
-              authority: ['admin'],
+              path: '/file',
+              name: 'file',
+              icon: 'file-add',
+              component: './File',
             },
             {
               component: './404',
@@ -170,13 +171,7 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  /*
-  proxy: {
-    '/server/api/': {
-      target: 'https://preview.pro.ant.design/',
-      changeOrigin: true,
-      pathRewrite: { '^/server': '' },
-    },
-  },
-  */
+  
+  
+  
 };
