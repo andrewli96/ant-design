@@ -1,6 +1,6 @@
 import { routerRedux } from 'dva/router';
 import { stringify } from 'querystring';
-import { fileUpload } from '@/services/file';
+import { fileUpload, fileFetchAll } from '@/services/file';
 
 import { setAuthority } from '@/utils/authority';
 
@@ -11,13 +11,23 @@ const FileModel = {
   },
   effects: {
     *upload({ payload, callback }, { call, put }) {
-      console.log('check action: ', payload)
+      //console.log('check action: ', payload)
       const response = yield call(fileUpload, payload);
       yield put({
         type: 'changeFileStatus',
         payload: response,
-      }); 
-      if(callback) callback(response)
+      });
+      if (callback) callback(response);
+    },
+    *fetchAll({ payload, callback }, { call, put }) {
+      //console.log('check action: ', payload)
+      const response = yield call(fileFetchAll);
+      yield put({
+        type: 'changeFileStatus',
+        payload: response,
+      });
+      console.log('file response: ', response);
+      if (callback) callback(response);
     },
   },
 };

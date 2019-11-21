@@ -85,7 +85,6 @@ export default {
           name: 'login',
           path: '/user/login',
           component: './user/login',
-
         },
       ],
     },
@@ -114,6 +113,12 @@ export default {
               name: 'file',
               icon: 'file-add',
               component: './File',
+            },
+            {
+              path: '/client',
+              name: 'client',
+              icon: 'file-add',
+              component: './Client',
             },
             {
               component: './404',
@@ -171,7 +176,4 @@ export default {
     basePath: '/',
   },
   chainWebpack: webpackPlugin,
-  
-  
-  
 };
