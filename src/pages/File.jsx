@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'dva';
 import { Card, Typography, Alert } from 'antd';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { Upload, message, Button, Icon } from 'antd';
+import { Form, Upload, message, Button, Icon } from 'antd';
 
 const CodePreview = ({ children }) => (
   <pre
@@ -33,44 +33,52 @@ class Demo extends React.Component {
   handleUpload = () => {
     const { file } = this.state;
     const formData = new FormData();
-    
-      formData.append('myFile', file);
-      console.log(file.name.slice(-4))
-      if (file.name.slice(-4) !== '.jpg' && file.name.slice(-4) !== '.rar'){
-        message.error('必须上传zip文件或者rar文件')
-
-        this.setState({
-          fileList: [],
-          uploading: false,
-        });
-        message.error('请重新上传');
+    console.log(Object.keys(file).length===0)
+      if (Object.keys(file).length===0){
+        message.error('请选择文件');
       }else{
-        console.log('this is right')
-        this.setState({fileValidation: true})
-        this.setState({
-          uploading: true,
-        });
-        const { dispatch } = this.props;
-        dispatch({
-          type: 'file/upload',
-          payload: formData ,
-          callback: (data) => {
-            if(data.file_status === 'ok'){
-              this.setState({
-                fileList: [],
-                uploading: false,
-              });
-              message.success('上传成功');
-            }else{
-              this.setState({
-                uploading: false,
-              });
-              message.error('上传失败');
+        formData.append('myFile', file);
+        //console.log(file.name.slice(-4))
+        if (file.name.slice(-4) !== '.zip' && file.name.slice(-4) !== '.rar'){
+          message.error('必须上传zip文件或者rar文件')
+
+          this.setState({
+            fileList: [],
+            uploading: false,
+          });
+          message.error('请重新上传');
+        }else{
+          console.log('this is right')
+          this.setState({fileValidation: true})
+          this.setState({
+            uploading: true,
+          });
+          const { dispatch } = this.props;
+          dispatch({
+            type: 'file/upload',
+            payload: formData ,
+            callback: (data) => {
+              if(data.file_status === 'ok'){
+                this.setState({
+                  fileList: [],
+                  uploading: false,
+                });
+                message.success('上传成功');
+              }else{
+                this.setState({
+                  uploading: false,
+                });
+                message.error('上传失败');
+                console.log(data.error)
+                if(typeof(data.error)=='string'){
+                  message.error(data.error)
+                }
+              }
             }
-          }
-        })
-      }
-  };
+          })
+        }
+    };
+  }
 
   render() {
     const { uploading, file } = this.state;
@@ -104,6 +112,8 @@ class Demo extends React.Component {
             <Icon type="upload" /> 选择zip文件
           </Button>
         </Upload>
+        
+        
         <Button
           type="primary"
           onClick={this.handleUpload}
