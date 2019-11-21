@@ -1,9 +1,9 @@
 export function loginUrl() {
-  return 'http://localhost:5000/users/login';
+  return 'http://118.31.246.30:5000/users/login';
 }
 
 export function fileUploadUrl() {
-  return 'http://localhost:5000/file/upload';
+  return 'http://118.31.246.30:5000/file/upload';
 }
 
 export function fileFetchAllUrl() {

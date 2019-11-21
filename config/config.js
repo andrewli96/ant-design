@@ -91,12 +91,12 @@ export default {
     {
       path: '/',
       component: '../layouts/SecurityLayout',
-      Routes: ['src/pages/Authorized'],
       authority: ['admin'],
       routes: [
         {
           path: '/',
           component: '../layouts/BasicLayout',
+          authority: ['admin'],
           routes: [
             {
               path: '/',
@@ -105,18 +105,21 @@ export default {
             {
               path: '/welcome',
               name: 'welcome',
+              authority: ['admin'],
               icon: 'smile',
               component: './Welcome',
             },
             {
               path: '/file',
               name: 'file',
+              authority: ['admin'],
               icon: 'file-add',
               component: './File',
             },
             {
               path: '/client',
               name: 'client',
+              authority: ['admin'],
               icon: 'file-add',
               component: './Client',
             },

@@ -13,6 +13,7 @@ const Model = {
   },
   effects: {
     *login({ payload }, { call, put }) {
+
       const response = yield call(AccountLogin, payload);
       //console.log(response)
       yield put({
@@ -20,10 +21,8 @@ const Model = {
         payload: response,
       }); // Login successfully
       if (response.status === 'ok') {
-        
-        //console.log(getAuthority())
         reloadAuthorized();
-        yield put(routerRedux.push('/'));
+        yield put(routerRedux.push('/welcome'));
       }
     },
 
