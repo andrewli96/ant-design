@@ -69,7 +69,7 @@ class FileAvailableList extends React.Component {
             dataSource={this.state.data}
             renderItem={item => (
               <List.Item>
-                <List.Item.Meta title={item.name.last} />
+                <List.Item.Meta title={item.name} />
               </List.Item>
             )}
           >
